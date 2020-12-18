@@ -99,6 +99,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           <div>Bitcoin:</div>
           {allBtcAssets.map((asset: string) => (
             <button
+              key={asset}
               style={{ background: contains(btcAssets, asset) ? 'white' : 'gray' }}
               onClick={() => setBtcAssets((assets: string[]) => toggle(assets, asset))}
             >
@@ -108,6 +109,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           <div>Ethereum:</div>
           {allEthAssets.map((asset: string) => (
             <button
+              key={asset}
               style={{ background: contains(ethAssets, asset) ? 'white' : 'gray' }}
               onClick={() => setEthAssets((assets: string[]) => toggle(assets, asset))}
             >

@@ -126,7 +126,7 @@ const Chart: React.FC<SeriesChartProps> = ({ data }) => {
           name={'Ethereum'}
           dataKey="eth"
           yAxisId={0}
-          stroke="#3c3c3d"
+          stroke="#8a92b2"
         />
       </LineChart>
     </div>
