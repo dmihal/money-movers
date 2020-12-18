@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Line, XAxis, YAxis, ResponsiveContainer, Tooltip, LineChart } from 'recharts';
 import format from 'date-fns/format';
 import Numeral from 'numeral';
@@ -74,12 +74,6 @@ const Chart: React.FC<SeriesChartProps> = ({ data }) => {
         barCategoryGap={1}
         data={data}
       >
-        <defs>
-          <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor={color} stopOpacity={0.35} />
-            <stop offset="95%" stopColor={color} stopOpacity={0} />
-          </linearGradient>
-        </defs>
         <XAxis
           tickLine={false}
           axisLine={false}
@@ -124,8 +118,7 @@ const Chart: React.FC<SeriesChartProps> = ({ data }) => {
           name={'Bitcoin'}
           dataKey="btc"
           yAxisId={0}
-          stroke="red"
-          fill="url(#colorUv)"
+          stroke="#f2a900"
         />
         <Line
           strokeWidth={2}
@@ -134,8 +127,7 @@ const Chart: React.FC<SeriesChartProps> = ({ data }) => {
           name={'Ethereum'}
           dataKey="eth"
           yAxisId={0}
-          stroke="red"
-          fill="url(#colorUv)"
+          stroke="#3c3c3d"
         />
       </LineChart>
     </div>
