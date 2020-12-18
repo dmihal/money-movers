@@ -3,7 +3,12 @@ import Numeral from 'numeral';
 import ethLogo from './eth.svg';
 import btcLogo from './btc.svg';
 
-const StatBar: React.FC = ({ btc, eth }) => {
+interface StatBarProps {
+  btc: number;
+  eth: number;
+}
+
+const StatBar: React.FC<StatBarProps> = ({ btc, eth }) => {
   return (
     <div className="statbar">
       <div className="stat" style={{ backgroundImage: `url(${btcLogo})` }}>
