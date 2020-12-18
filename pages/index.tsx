@@ -12,9 +12,26 @@ function getSum(assets: string[], day: any): number {
   return assets.reduce((total: number, asset: string) => total + day[asset], 0);
 }
 
+const allBtcAssets = ['btc', 'usdt'];
+const allEthAssets = ['eth', 'usdc', 'usdt_eth', 'dai', 'weth', 'wbtc'];
+
+function contains(list: string[], val: string) {
+  return list.indexOf(val) !== -1;
+}
+function toggle(list: string[], val: string) {
+  const index = list.indexOf(val);
+  if (index === -1) {
+    return [...list, val];
+  } else {
+    const newList = [...list];
+    newList.splice(index, 1);
+    return newList;
+  }
+}
+
 export const Home: NextPage<HomeProps> = ({ data }) => {
-  const [btcAssets, setBtcAssets] = useState(['btc', 'usdt']);
-  const [ethAssets, setEthAssets] = useState(['eth', 'usdc', 'usdt_eth', 'dai', 'weth', 'wbtc']);
+  const [btcAssets, setBtcAssets] = useState(allBtcAssets);
+  const [ethAssets, setEthAssets] = useState(allEthAssets);
 
   let filteredData = data.map((day: any) => ({
     date: (new Date(day.date)).getTime() / 1000,
@@ -55,9 +72,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         <h1 className="title">Money Movers</h1>
 
         <p className="description">
-          There&apos;s tons of crypto projects.
-          <br />
-          Which ones are people actually paying to use?
+          Which blockchain is settling more value?
         </p>
 
         <div>
@@ -73,22 +88,31 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 
         <Chart data={filteredData}/>
 
-        <pre>{data.map((day: any, i: number) => {
-          let btcTotal
-          return (
-            <div key={day.date}>
-              <div>{(new Date(day.date)).toString()}</div>
-              <div>BTC: ${day.btc.toLocaleString()}</div>
-              <div>ETH: ${day.eth.toLocaleString()}</div>
-            </div>
-          );
-        })}</pre>
+        <div>
+          <div>Bitcoin:</div>
+          {allBtcAssets.map((asset: string) => (
+            <button
+              style={{ background: contains(btcAssets, asset) ? 'white' : 'gray' }}
+              onClick={() => setBtcAssets((assets: string[]) => toggle(assets, asset))}
+            >
+              {asset.toUpperCase()}
+            </button>
+          ))}
+          <div>Ethereum:</div>
+          {allEthAssets.map((asset: string) => (
+            <button
+              style={{ background: contains(ethAssets, asset) ? 'white' : 'gray' }}
+              onClick={() => setEthAssets((assets: string[]) => toggle(assets, asset))}
+            >
+              {asset.toUpperCase()}
+            </button>
+          ))}
+        </div>
       </main>
 
       <footer>
         <div>Data updates at midnight, UTC</div>
-        <div>Network data from CoinMetrics, application data from The Graph</div>
-        <div>Application data does not include Ethereum transaction fees</div>
+        <div>Data from CoinMetrics</div>
         <div>
           Created by{' '}
           <a href="https://twitter.com/dmihal" target="twitter">
