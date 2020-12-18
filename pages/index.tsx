@@ -72,6 +72,14 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           content={`https://cryptofees.info/api/screenshot?${new Date().getDate()}`}
         />
         <meta name="twitter:card" content="summary_large_image" />
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-T3CCYMTVSM" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
+          }}
+        />
       </Head>
 
       <main>
