@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { NextPage, GetStaticProps } from 'next';
 import { getData } from 'data/coinmetrics';
 import Chart from 'components/Chart';
+import StatBar from 'components/StatBar';
 
 interface HomeProps {
   data: any;
@@ -90,6 +91,11 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           </a>
           <script async src="https://platform.twitter.com/widgets.js"></script>
         </div>
+
+        <StatBar
+          btc={filteredData[filteredData.length - 1].btc}
+          eth={filteredData[filteredData.length - 1].eth}
+        />
 
         <Chart data={filteredData}/>
 
