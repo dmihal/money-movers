@@ -29,6 +29,11 @@ function toggle(list: string[], val: string) {
   }
 }
 
+const assetNames: { [id: string]: string } = {
+  usdt: 'USDT (Omni)',
+  usdt_eth: 'USDT (ERC-20)',
+}
+
 export const Home: NextPage<HomeProps> = ({ data }) => {
   const [btcAssets, setBtcAssets] = useState(allBtcAssets);
   const [ethAssets, setEthAssets] = useState(allEthAssets);
@@ -95,7 +100,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
               style={{ background: contains(btcAssets, asset) ? 'white' : 'gray' }}
               onClick={() => setBtcAssets((assets: string[]) => toggle(assets, asset))}
             >
-              {asset.toUpperCase()}
+              {assetNames[asset] || asset.toUpperCase()}
             </button>
           ))}
           <div>Ethereum:</div>
@@ -104,7 +109,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
               style={{ background: contains(ethAssets, asset) ? 'white' : 'gray' }}
               onClick={() => setEthAssets((assets: string[]) => toggle(assets, asset))}
             >
-              {asset.toUpperCase()}
+              {assetNames[asset] || asset.toUpperCase()}
             </button>
           ))}
         </div>
