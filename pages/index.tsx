@@ -127,10 +127,11 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           </a>
         </div>
         <div>
-          Design help from{' '}
-          <a href="https://twitter.com/hey_heey_heeey" target="twitter">
-            @heyheeyheeey
-          </a>
+          <a href="https://cryptofees.info">cryptofees.info</a>
+          {' | '}
+          <a href="https://ethereumnodes.com">ethereumnodes.com</a>
+          {' | '}
+          <b>money-movers.info</b>
         </div>
       </footer>
 
@@ -162,8 +163,11 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         }
 
         a {
-          color: inherit;
+          color: #444444;
           text-decoration: none;
+        }
+        a:hover {
+          color: #000000;
         }
 
         .title {
