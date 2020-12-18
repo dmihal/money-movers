@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Line, XAxis, YAxis, Tooltip, LineChart } from 'recharts';
 import format from 'date-fns/format';
 import Numeral from 'numeral';
@@ -54,13 +54,16 @@ export interface ChartDay {
   date: number;
   btc: number;
   eth: number;
+  bch: number;
+  xrp: number;
 }
 
 interface SeriesChartProps {
   data: ChartDay[];
+  showSmall: boolean;
 }
 
-const Chart: React.FC<SeriesChartProps> = ({ data }) => {
+const Chart: React.FC<SeriesChartProps> = ({ data, showSmall }) => {
   const color = 'blue';
   const textColor = 'black';
 
@@ -128,6 +131,28 @@ const Chart: React.FC<SeriesChartProps> = ({ data }) => {
           yAxisId={0}
           stroke="#8a92b2"
         />
+        {showSmall && (
+          <Line
+            strokeWidth={2}
+            dot={false}
+            type="monotone"
+            name={'Bitcoin Cash'}
+            dataKey="bch"
+            yAxisId={0}
+            stroke="#ee8c28"
+          />
+        )}
+        {showSmall && (
+          <Line
+            strokeWidth={2}
+            dot={false}
+            type="monotone"
+            name={'Ripple'}
+            dataKey="xrp"
+            yAxisId={0}
+            stroke="#00aae4"
+          />
+        )}
       </LineChart>
     </div>
   )

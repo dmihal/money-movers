@@ -15,21 +15,16 @@ function getPreviousMA(list: any[], day: number, previousDays: number): number {
     .reduce((total, item) => total + item.value, 0) / previousDays;
 }
 
-export async function getData(movingAverage: number) {
-  const [btcData, ethData, usdtData, usdcData, usdt_eth, dai, weth, wbtc] = await Promise.all(
-    ['btc', 'eth', 'usdt', 'usdc', 'usdt_eth', 'dai', 'weth', 'wbtc'].map(getAssetData));
+const coins = ['btc', 'eth', 'usdt', 'usdc', 'usdt_eth', 'dai', 'weth', 'wbtc', 'bch', 'xrp'];
 
-  return btcData.slice(movingAverage).map((day: any, i: number) => {
-    return {
-      date: day.time,
-      btc: getPreviousMA(btcData, i + movingAverage, movingAverage),
-      eth: getPreviousMA(ethData, i + movingAverage, movingAverage),
-      usdt: getPreviousMA(usdtData, i + movingAverage, movingAverage),
-      usdc: getPreviousMA(usdcData, i + movingAverage, movingAverage),
-      usdt_eth: getPreviousMA(usdt_eth, i + movingAverage, movingAverage),
-      dai: getPreviousMA(dai, i + movingAverage, movingAverage),
-      weth: getPreviousMA(weth, i + movingAverage, movingAverage),
-      wbtc: getPreviousMA(wbtc, i + movingAverage, movingAverage),
-    };
+export async function getData(movingAverage: number) {
+  const coinData = await Promise.all(coins.map(getAssetData));
+
+  return coinData[0].slice(movingAverage).map((day: any, i: number) => {
+    const dayValue: any = { date: day.time };
+    coins.forEach((coin: string, j: number) => {
+      dayValue[coin] = getPreviousMA(coinData[j], i + movingAverage, movingAverage);
+    });
+    return dayValue;
   });
 }

@@ -2,13 +2,17 @@ import React from 'react';
 import Numeral from 'numeral';
 import ethLogo from './eth.svg';
 import btcLogo from './btc.svg';
+import bchLogo from './bch.svg';
+import xrpLogo from './xrp.svg';
 
 interface StatBarProps {
   btc: number;
   eth: number;
+  bch: number | null;
+  xrp: number | null;
 }
 
-const StatBar: React.FC<StatBarProps> = ({ btc, eth }) => {
+const StatBar: React.FC<StatBarProps> = ({ btc, eth, bch, xrp }) => {
   return (
     <div className="statbar">
       <div className="stat" style={{ backgroundImage: `url(${btcLogo})` }}>
@@ -23,6 +27,24 @@ const StatBar: React.FC<StatBarProps> = ({ btc, eth }) => {
         </div>
         <div>Ethereum</div>
       </div>
+
+      {bch && (
+        <div className="stat" style={{ backgroundImage: `url(${bchLogo})` }}>
+          <div className="value">
+            ${Numeral(bch).format('0.[000]a')}
+          </div>
+          <div>Bitcoin Cash</div>
+        </div>
+      )}
+
+      {xrp && (
+        <div className="stat" style={{ backgroundImage: `url(${xrpLogo})` }}>
+          <div className="value">
+            ${Numeral(xrp).format('0.[000]a')}
+          </div>
+          <div>Ripple</div>
+        </div>
+      )}
 
       <style jsx>{`
         .statbar {

@@ -38,12 +38,16 @@ const assetNames: { [id: string]: string } = {
 export const Home: NextPage<HomeProps> = ({ data }) => {
   const [btcAssets, setBtcAssets] = useState(allBtcAssets);
   const [ethAssets, setEthAssets] = useState(allEthAssets);
+  const [showSmall, setShowSmall] = useState(false);
 
   let filteredData = data.map((day: any) => ({
     date: (new Date(day.date)).getTime() / 1000,
     btc: getSum(btcAssets, day),
     eth: getSum(ethAssets, day),
+    bch: day.bch,
+    xrp: day.xrp,
   }))
+  const today = filteredData[filteredData.length - 1];
 
   return (
     <div className="container">
@@ -101,11 +105,13 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
         </div>
 
         <StatBar
-          btc={filteredData[filteredData.length - 1].btc}
-          eth={filteredData[filteredData.length - 1].eth}
+          btc={today.btc}
+          eth={today.eth}
+          bch={showSmall ? today.bch : null}
+          xrp={showSmall ? today.xrp : null}
         />
 
-        <Chart data={filteredData}/>
+        <Chart data={filteredData} showSmall={showSmall}/>
 
         <div className="sub">(30 day moving average)</div>
 
@@ -130,6 +136,11 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
               {assetNames[asset] || asset.toUpperCase()}
             </button>
           ))}
+        </div>
+        <div>
+          <button onClick={() => setShowSmall((current: boolean) => !current)}>
+            {showSmall ? 'Hide' : 'Show'} other chains
+          </button>
         </div>
       </main>
 
