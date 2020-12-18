@@ -49,6 +49,8 @@ const StatBar: React.FC<StatBarProps> = ({ btc, eth, bch, xrp }) => {
       <style jsx>{`
         .statbar {
           display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
         }
         .stat {
           margin: 10px;

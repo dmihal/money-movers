@@ -234,6 +234,15 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
           margin: 0;
           font-family: 'Noto Sans TC', sans-serif;
           background: #eeeeee;
+          overflow-x: hidden;
+        }
+
+        main {
+          width: 100%;
+        }
+
+        .recharts-responsive-container {
+          max-width: 500px;
         }
 
         * {

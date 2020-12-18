@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Line, XAxis, YAxis, Tooltip, LineChart } from 'recharts';
+import { Line, XAxis, YAxis, Tooltip, LineChart, ResponsiveContainer } from 'recharts';
 import format from 'date-fns/format';
 import Numeral from 'numeral';
 
@@ -68,7 +68,7 @@ const Chart: React.FC<SeriesChartProps> = ({ data, showSmall }) => {
   const textColor = 'black';
 
   return (
-    <div>
+    <ResponsiveContainer height={200}>
       <LineChart
         height={200}
         width={500}
@@ -154,7 +154,7 @@ const Chart: React.FC<SeriesChartProps> = ({ data, showSmall }) => {
           />
         )}
       </LineChart>
-    </div>
+    </ResponsiveContainer>
   )
 }
 
