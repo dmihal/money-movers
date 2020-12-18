@@ -1,5 +1,5 @@
 import React from 'react';
-import { Line, XAxis, YAxis, ResponsiveContainer, Tooltip, LineChart } from 'recharts';
+import { Line, XAxis, YAxis, Tooltip, LineChart } from 'recharts';
 import format from 'date-fns/format';
 import Numeral from 'numeral';
 
@@ -62,7 +62,6 @@ interface SeriesChartProps {
 
 const Chart: React.FC<SeriesChartProps> = ({ data }) => {
   const color = 'blue';
-  const aspect = 60 / 28;
   const textColor = 'black';
 
   return (
@@ -80,7 +79,7 @@ const Chart: React.FC<SeriesChartProps> = ({ data }) => {
           interval="preserveStartEnd"
           tickMargin={14}
           minTickGap={0}
-          tickFormatter={(tick) => toNiceDate(tick)}
+          tickFormatter={(tick: any) => toNiceDate(tick)}
           dataKey="date"
           tick={{ fill: textColor }}
           type={'number'}
@@ -89,7 +88,7 @@ const Chart: React.FC<SeriesChartProps> = ({ data }) => {
         <YAxis
           type="number"
           orientation="right"
-          tickFormatter={(tick) => '$' + toK(tick)}
+          tickFormatter={(tick: any) => '$' + toK(tick)}
           axisLine={false}
           tickLine={false}
           interval="preserveEnd"
