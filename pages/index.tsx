@@ -48,28 +48,28 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
   return (
     <div className="container">
       <Head>
-        <title>Crypto Fees</title>
+        <title>Money Movers</title>
         <link rel="icon" href="/favicon.png" />
         <link
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
 
-        <meta property="og:title" content="Crypto Fees" />
-        <meta property="og:image" content="https://cryptofees.info/api/screenshot" />
+        <meta property="og:title" content="Money Movers" />
+        <meta property="og:image" content="https://money-movers.info/api/screenshot" />
         <meta
           property="og:description"
-          content="There's tons of crypto projects. Which ones are people actually paying to use?"
+          content="Which blockchain is settling more value?"
         />
 
-        <meta name="twitter:title" content="Crypto Fees" />
+        <meta name="twitter:title" content="Money Movers" />
         <meta
           name="twitter:description"
-          content="There's tons of crypto projects. Which ones are people actually paying to use?"
+          content="Which blockchain is settling more value?"
         />
         <meta
           name="twitter:image"
-          content={`https://cryptofees.info/api/screenshot?${new Date().getDate()}`}
+          content="https://money-movers.info/api/screenshot"
         />
         <meta name="twitter:card" content="summary_large_image" />
 
@@ -107,7 +107,7 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
 
         <Chart data={filteredData}/>
 
-        <div className="sub">(15 day moving average)</div>
+        <div className="sub">(30 day moving average)</div>
 
         <div>
           <div>Bitcoin:</div>
@@ -234,7 +234,7 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await getData(15);
+  const data = await getData(30);
 
   return { props: { data }, revalidate: 60 };
 };
