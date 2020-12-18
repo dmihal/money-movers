@@ -93,6 +93,8 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 
         <Chart data={filteredData}/>
 
+        <div className="sub">(15 day moving average)</div>
+
         <div>
           <div>Bitcoin:</div>
           {allBtcAssets.map((asset: string) => (
@@ -164,17 +166,6 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           text-decoration: none;
         }
 
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
         .title {
           margin: 0 0 16px;
           line-height: 1.15;
@@ -191,6 +182,11 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           line-height: 1.5;
           font-size: 1.5rem;
           margin: 4px 0 20px;
+        }
+
+        .sub {
+          margin: 10px 0;
+          font-size: 12px;
         }
 
         @media (max-width: 600px) {
