@@ -68,7 +68,7 @@ const Chart: React.FC<SeriesChartProps> = ({ data }) => {
     <div>
       <LineChart
         height={200}
-        width={400}
+        width={500}
         margin={{ top: 0, right: 10, bottom: 6, left: 0 }}
         barCategoryGap={1}
         data={data}

@@ -213,7 +213,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await getData();
+  const data = await getData(15);
 
   return { props: { data }, revalidate: 60 };
 };
