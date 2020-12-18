@@ -1,13 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import { NextPage, GetStaticProps } from 'next';
 import { getData } from 'data/coinmetrics';
+import Chart from 'components/Chart';
 
 interface HomeProps {
   data: any;
 }
 
+function getSum(assets: string[], day: any): number {
+  return assets.reduce((total: number, asset: string) => total + day[asset], 0);
+}
+
 export const Home: NextPage<HomeProps> = ({ data }) => {
+  const [btcAssets, setBtcAssets] = useState(['btc', 'usdt']);
+  const [ethAssets, setEthAssets] = useState(['eth', 'usdc', 'usdt_eth', 'dai', 'weth', 'wbtc']);
+
+  let filteredData = data.map((day: any) => ({
+    date: (new Date(day.date)).getTime() / 1000,
+    btc: getSum(btcAssets, day),
+    eth: getSum(ethAssets, day),
+  }))
+
   return (
     <div className="container">
       <Head>
@@ -57,10 +71,12 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           <script async src="https://platform.twitter.com/widgets.js"></script>
         </div>
 
+        <Chart data={filteredData}/>
+
         <pre>{data.map((day: any, i: number) => {
           let btcTotal
           return (
-            <div>
+            <div key={day.date}>
               <div>{(new Date(day.date)).toString()}</div>
               <div>BTC: ${day.btc.toLocaleString()}</div>
               <div>ETH: ${day.eth.toLocaleString()}</div>

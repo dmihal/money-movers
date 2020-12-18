@@ -1,5 +1,5 @@
 async function getAssetData(asset: string) {
-  const req = await fetch(`https://community-api.coinmetrics.io/v2/assets/${asset}/metricdata?metrics=TxTfrValUSD&start=2020-11-26`);
+  const req = await fetch(`https://community-api.coinmetrics.io/v2/assets/${asset}/metricdata?metrics=TxTfrValUSD&start=2020-11-01`);
   const response = await req.json();
   return response.metricData.series.map((day: any) => ({
     time: day.time,
@@ -8,8 +8,8 @@ async function getAssetData(asset: string) {
 }
 
 export async function getData() {
-  const [btcData, ethData, usdtData, usdcData] = await Promise.all(
-    ['btc', 'eth', 'usdt', 'usdc'].map(getAssetData));
+  const [btcData, ethData, usdtData, usdcData, usdt_eth, dai, weth, wbtc] = await Promise.all(
+    ['btc', 'eth', 'usdt', 'usdc', 'usdt_eth', 'dai', 'weth', 'wbtc'].map(getAssetData));
 
   return btcData.map((day: any, i: number) => {
     return {
@@ -18,6 +18,10 @@ export async function getData() {
       eth: ethData[i].value,
       usdt: usdtData[i].value,
       usdc: usdcData[i].value,
+      usdt_eth: usdt_eth[i].value,
+      dai: dai[i].value,
+      weth: weth[i].value,
+      wbtc: wbtc[i].value,
     };
   });
 }
