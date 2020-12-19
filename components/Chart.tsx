@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Line, XAxis, YAxis, Tooltip, LineChart, ResponsiveContainer } from 'recharts';
 import format from 'date-fns/format';
 import Numeral from 'numeral';
