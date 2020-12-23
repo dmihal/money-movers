@@ -18,12 +18,14 @@ const StatBar: React.FC<StatBarProps> = ({ btc, eth, bch, xrp }) => {
       <div className="stat" style={{ backgroundImage: `url(${btcLogo})` }}>
         <div className="value">
           ${Numeral(btc).format('0.[000]a')}
+          <span className="small">/day</span>
         </div>
         <div>Bitcoin</div>
       </div>
       <div className="stat" style={{ backgroundImage: `url(${ethLogo})` }}>
         <div className="value">
           ${Numeral(eth).format('0.[000]a')}
+          <span className="small">/day</span>
         </div>
         <div>Ethereum</div>
       </div>
@@ -32,6 +34,7 @@ const StatBar: React.FC<StatBarProps> = ({ btc, eth, bch, xrp }) => {
         <div className="stat" style={{ backgroundImage: `url(${bchLogo})` }}>
           <div className="value">
             ${Numeral(bch).format('0.[000]a')}
+            <span className="small">/day</span>
           </div>
           <div>Bitcoin Cash</div>
         </div>
@@ -41,6 +44,7 @@ const StatBar: React.FC<StatBarProps> = ({ btc, eth, bch, xrp }) => {
         <div className="stat" style={{ backgroundImage: `url(${xrpLogo})` }}>
           <div className="value">
             ${Numeral(xrp).format('0.[000]a')}
+            <span className="small">/day</span>
           </div>
           <div>Ripple</div>
         </div>
@@ -60,6 +64,9 @@ const StatBar: React.FC<StatBarProps> = ({ btc, eth, bch, xrp }) => {
           background-repeat: no-repeat;
           background-size: 24px;
           background-position: 10px center;
+        }
+        .small {
+          font-size: 16px;
         }
         .value {
           font-size: 24px;
