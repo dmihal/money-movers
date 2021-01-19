@@ -1,5 +1,5 @@
 import { format, subDays } from 'date-fns';
-const startDate = format(subDays(new Date(), 180), 'yyyy-MM-dd');
+const startDate = format(subDays(new Date(), 270), 'yyyy-MM-dd');
 
 async function getAssetData(asset: string) {
   const req = await fetch(`https://community-api.coinmetrics.io/v2/assets/${asset}/metricdata?metrics=TxTfrValAdjUSD&start=${startDate}`);
