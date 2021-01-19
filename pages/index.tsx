@@ -146,7 +146,7 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
 
       <footer>
         <div>Data updates at midnight, UTC</div>
-        <div>Data from CoinMetrics</div>
+        <div>Data from CoinMetrics (Transfered Value, Adjusted USD)</div>
         <div>
           Created by{' '}
           <a href="https://twitter.com/dmihal" target="twitter">

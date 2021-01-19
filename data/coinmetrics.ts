@@ -2,7 +2,7 @@ import { format, subDays } from 'date-fns';
 const startDate = format(subDays(new Date(), 180), 'yyyy-MM-dd');
 
 async function getAssetData(asset: string) {
-  const req = await fetch(`https://community-api.coinmetrics.io/v2/assets/${asset}/metricdata?metrics=TxTfrValUSD&start=${startDate}`);
+  const req = await fetch(`https://community-api.coinmetrics.io/v2/assets/${asset}/metricdata?metrics=TxTfrValAdjUSD&start=${startDate}`);
   const response = await req.json();
   return response.metricData.series.map((day: any) => ({
     time: day.time,
