@@ -15,19 +15,19 @@ interface StatBarProps {
 const StatBar: React.FC<StatBarProps> = ({ btc, eth, bch, xrp }) => {
   return (
     <div className="statbar">
-      <div className="stat" style={{ backgroundImage: `url(${btcLogo})` }}>
-        <div className="value">
-          ${Numeral(btc).format('0.[000]a')}
-          <span className="small">/day</span>
-        </div>
-        <div>Bitcoin</div>
-      </div>
       <div className="stat" style={{ backgroundImage: `url(${ethLogo})` }}>
         <div className="value">
           ${Numeral(eth).format('0.[000]a')}
           <span className="small">/day</span>
         </div>
         <div>Ethereum</div>
+      </div>
+      <div className="stat" style={{ backgroundImage: `url(${btcLogo})` }}>
+        <div className="value">
+          ${Numeral(btc).format('0.[000]a')}
+          <span className="small">/day</span>
+        </div>
+        <div>Bitcoin</div>
       </div>
 
       {bch && (
