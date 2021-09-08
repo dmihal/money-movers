@@ -84,6 +84,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
           }}
         />
+        <script async defer data-domain="money-movers.info" src="https://analytics.cryptostats.community/js/plausible.js" />
       </Head>
 
       <main>
