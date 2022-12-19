@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import { NextPage, GetStaticProps } from 'next';
 import { getData } from 'data/coinmetrics';
+import { Header } from '@cryptostats/header.header';
 import Chart from 'components/Chart';
 import StatBar from 'components/StatBar';
 
@@ -86,7 +87,7 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
         />
         <script async defer data-domain="money-movers.info" src="https://analytics.cryptostats.community/js/plausible.js" />
       </Head>
-
+      <Header siteName='money-movers.info'/>
       <main>
         <h1 className="title">Money Movers</h1>
 
