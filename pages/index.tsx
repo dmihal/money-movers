@@ -5,6 +5,7 @@ import { getData } from 'data/coinmetrics';
 import { Header } from '@cryptostats/header.header';
 import Chart from 'components/Chart';
 import StatBar from 'components/StatBar';
+import { Sponsor } from '@cryptostats/header.sponsor_cta';
 
 interface HomeProps {
   data: any;
@@ -146,6 +147,8 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
         </div>
       </main>
 
+      <Sponsor/>
+
       <footer>
         <div>Data updates at midnight, UTC</div>
         <div>Data from CoinMetrics (Transfered Value, Adjusted USD)</div>
@@ -189,6 +192,7 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
           border-top: 1px solid lightGray;
           text-align: center;
           padding: 2rem 0;
+          margin-top: 2rem;
         }
 
         a {
