@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import Head from 'next/head';
-import { NextPage, GetStaticProps } from 'next';
-import { getData } from 'data/coinmetrics';
-import { Header } from '@cryptostats/header.header';
-import Chart from 'components/Chart';
-import StatBar from 'components/StatBar';
-import { Sponsor } from '@cryptostats/header.sponsor_cta';
+import React, { useState } from "react";
+import Head from "next/head";
+import { NextPage, GetStaticProps } from "next";
+import { getData } from "data/coinmetrics";
+import { Header } from "@cryptostats/header.header";
+import Chart from "components/Chart";
+import StatBar from "components/StatBar";
+import { SponsorWrapper } from "components/SponsorWrapper";
 
 interface HomeProps {
   data: any;
@@ -15,8 +15,8 @@ function getSum(assets: string[], day: any): number {
   return assets.reduce((total: number, asset: string) => total + day[asset], 0);
 }
 
-const allBtcAssets = ['btc', 'usdt'];
-const allEthAssets = ['eth', 'usdc', 'usdt_eth', 'dai', 'weth', 'wbtc'];
+const allBtcAssets = ["btc", "usdt"];
+const allEthAssets = ["eth", "usdc", "usdt_eth", "dai", "weth", "wbtc"];
 
 function contains(list: string[], val: string) {
   return list.indexOf(val) !== -1;
@@ -33,9 +33,9 @@ function toggle(list: string[], val: string) {
 }
 
 const assetNames: { [id: string]: string } = {
-  usdt: 'USDT (Omni)',
-  usdt_eth: 'USDT (ERC-20)',
-}
+  usdt: "USDT (Omni)",
+  usdt_eth: "USDT (ERC-20)",
+};
 
 export const Home: NextPage<HomeProps> = ({ data }) => {
   const [btcAssets, setBtcAssets] = useState(allBtcAssets);
@@ -43,12 +43,12 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
   const [showSmall, setShowSmall] = useState(false);
 
   let filteredData = data.map((day: any) => ({
-    date: (new Date(day.date)).getTime() / 1000,
+    date: new Date(day.date).getTime() / 1000,
     btc: getSum(btcAssets, day),
     eth: getSum(ethAssets, day),
     bch: day.bch,
     xrp: day.xrp,
-  }))
+  }));
   const today = filteredData[filteredData.length - 1];
 
   return (
@@ -62,7 +62,10 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         />
 
         <meta property="og:title" content="Money Movers" />
-        <meta property="og:image" content="https://money-movers.info/api/screenshot" />
+        <meta
+          property="og:image"
+          content="https://money-movers.info/api/screenshot"
+        />
         <meta
           property="og:description"
           content="Which blockchain is settling more value?"
@@ -79,22 +82,28 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         />
         <meta name="twitter:card" content="summary_large_image" />
 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-T3CCYMTVSM" />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-T3CCYMTVSM"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
+gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`,
           }}
         />
-        <script async defer data-domain="money-movers.info" src="https://analytics.cryptostats.community/js/plausible.js" />
+        <script
+          async
+          defer
+          data-domain="money-movers.info"
+          src="https://analytics.cryptostats.community/js/plausible.js"
+        />
       </Head>
-      <Header siteName='money-movers.info'/>
+      <Header siteName="money-movers.info" />
       <main>
         <h1 className="title">Money Movers</h1>
 
-        <p className="description">
-          Which blockchain is settling more value?
-        </p>
+        <p className="description">Which blockchain is settling more value?</p>
 
         <div>
           <a
@@ -114,7 +123,7 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
           xrp={showSmall ? today.xrp : null}
         />
 
-        <Chart data={filteredData} showSmall={showSmall}/>
+        <Chart data={filteredData} showSmall={showSmall} />
 
         <div className="sub">(30 day moving average)</div>
 
@@ -123,8 +132,12 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
           {allBtcAssets.map((asset: string) => (
             <button
               key={asset}
-              style={{ background: contains(btcAssets, asset) ? 'white' : 'gray' }}
-              onClick={() => setBtcAssets((assets: string[]) => toggle(assets, asset))}
+              style={{
+                background: contains(btcAssets, asset) ? "white" : "gray",
+              }}
+              onClick={() =>
+                setBtcAssets((assets: string[]) => toggle(assets, asset))
+              }
             >
               {assetNames[asset] || asset.toUpperCase()}
             </button>
@@ -133,8 +146,12 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
           {allEthAssets.map((asset: string) => (
             <button
               key={asset}
-              style={{ background: contains(ethAssets, asset) ? 'white' : 'gray' }}
-              onClick={() => setEthAssets((assets: string[]) => toggle(assets, asset))}
+              style={{
+                background: contains(ethAssets, asset) ? "white" : "gray",
+              }}
+              onClick={() =>
+                setEthAssets((assets: string[]) => toggle(assets, asset))
+              }
             >
               {assetNames[asset] || asset.toUpperCase()}
             </button>
@@ -142,27 +159,27 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
         </div>
         <div>
           <button onClick={() => setShowSmall((current: boolean) => !current)}>
-            {showSmall ? 'Hide' : 'Show'} other chains
+            {showSmall ? "Hide" : "Show"} other chains
           </button>
         </div>
       </main>
 
-      <Sponsor/>
+      <SponsorWrapper />
 
       <footer>
         <div>Data updates at midnight, UTC</div>
         <div>Data from CoinMetrics (Transfered Value, Adjusted USD)</div>
         <div>
-          Created by{' '}
+          Created by{" "}
           <a href="https://twitter.com/dmihal" target="twitter">
             David Mihal
           </a>
         </div>
         <div>
           <a href="https://cryptofees.info">cryptofees.info</a>
-          {' | '}
+          {" | "}
           <a href="https://ethereumnodes.com">ethereumnodes.com</a>
-          {' | '}
+          {" | "}
           <b>money-movers.info</b>
         </div>
       </footer>
@@ -238,7 +255,7 @@ gtag('js', new Date());gtag('config', 'G-T3CCYMTVSM');`
         body {
           padding: 0;
           margin: 0;
-          font-family: 'Noto Sans TC', sans-serif;
+          font-family: "Noto Sans TC", sans-serif;
           background: #eeeeee;
           overflow-x: hidden;
         }
