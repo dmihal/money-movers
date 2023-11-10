@@ -14,7 +14,7 @@ function getSum(assets: string[], day: any): number {
   return assets.reduce((total: number, asset: string) => total + day[asset], 0);
 }
 
-const allBtcAssets = ['btc', 'usdt'];
+const allBtcAssets = ['btc'];
 const allEthAssets = ['eth', 'usdc', 'usdt_eth', 'dai', 'weth', 'wbtc'];
 
 function contains(list: string[], val: string) {
